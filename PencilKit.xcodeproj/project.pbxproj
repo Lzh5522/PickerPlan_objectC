@@ -7,15 +7,71 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1415F11DF5A935FBAFF33952 /* libPods-PencilKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82700698C4D8B3E689BCD743 /* libPods-PencilKit.a */; };
 		A525EB4A2533155900E47C9D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A525EB492533155900E47C9D /* AppDelegate.m */; };
 		A525EB4D2533155900E47C9D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A525EB4C2533155900E47C9D /* ViewController.m */; };
 		A525EB502533155900E47C9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A525EB4E2533155900E47C9D /* Main.storyboard */; };
 		A525EB522533155A00E47C9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A525EB512533155A00E47C9D /* Assets.xcassets */; };
 		A525EB552533155A00E47C9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A525EB532533155A00E47C9D /* LaunchScreen.storyboard */; };
 		A525EB582533155A00E47C9D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A525EB572533155A00E47C9D /* main.m */; };
+		A52BB7A5255421FB00684871 /* DetailDayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A52BB7A4255421FB00684871 /* DetailDayVC.m */; };
+		A52BB7A8255593D300684871 /* TimeLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A52BB7A7255593D300684871 /* TimeLineLabel.m */; };
+		A52BB7AB25559ACF00684871 /* TimeLineTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A52BB7AA25559ACF00684871 /* TimeLineTextView.m */; };
+		A52BB7AE255663AF00684871 /* CustomSheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A52BB7AD255663AF00684871 /* CustomSheduleCell.m */; };
+		A52E86092552DFDF00759E0F /* AddNoteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A52E86082552DFDF00759E0F /* AddNoteVC.m */; };
+		A55E0C17253B34090080939E /* MyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0C16253B34090080939E /* MyTextField.m */; };
+		A55E0C242541B79E0080939E /* NavView.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0C232541B79E0080939E /* NavView.m */; };
+		A55E0C2A2541BDA60080939E /* UIButton+AddCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0C292541BDA60080939E /* UIButton+AddCorners.m */; };
+		A55E0C342541C96B0080939E /* CanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0C332541C96B0080939E /* CanvasView.m */; };
+		A55E0C3A2541CA3E0080939E /* TimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0C392541CA3E0080939E /* TimeLineView.m */; };
+		A55E0C422543081C0080939E /* TimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0C412543081C0080939E /* TimeLineCell.m */; };
+		A55E0C4525430D550080939E /* HalfCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0C4425430D550080939E /* HalfCell.m */; };
+		A55E0C4825440AFE0080939E /* ScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0C4725440AFD0080939E /* ScheduleCell.m */; };
+		A55E0C4B254512A60080939E /* MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0C4A254512A60080939E /* MenuView.m */; };
+		A55E0C7E25455DF80080939E /* UITextField+AddCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0C7D25455DF80080939E /* UITextField+AddCorners.m */; };
+		A55E0C8125455FBE0080939E /* UITextView+AddCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0C8025455FBE0080939E /* UITextView+AddCorners.m */; };
+		A55E0C85254584540080939E /* ScheduleTextViewCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0C83254584540080939E /* ScheduleTextViewCellTableViewCell.m */; };
+		A55E0C86254584540080939E /* ScheduleTextViewCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A55E0C84254584540080939E /* ScheduleTextViewCellTableViewCell.xib */; };
+		A55E0C8E2546F6200080939E /* MonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0C8D2546F6200080939E /* MonthView.m */; };
+		A55E0C952546F9860080939E /* MonthCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0C932546F9860080939E /* MonthCollectionViewCell.m */; };
+		A55E0C9D254718910080939E /* PopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A55E0C9C254718910080939E /* PopView.xib */; };
+		A55E0CA025483DEB0080939E /* MonthVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0C9F25483DEB0080939E /* MonthVC.m */; };
+		A55E0CA3254854350080939E /* NSDate+Calendar.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0CA2254854350080939E /* NSDate+Calendar.m */; };
+		A55E0CA6254859D30080939E /* MonthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0CA5254859D20080939E /* MonthModel.m */; };
+		A55E0CBA254AE25F0080939E /* CalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0CB9254AE25F0080939E /* CalendarCell.m */; };
+		A55E0CBD254AEB450080939E /* CalendarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0CBC254AEB450080939E /* CalendarModel.m */; };
+		A55E0CC0254AF2110080939E /* CalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A55E0CBF254AF2110080939E /* CalendarView.m */; };
+		A56C4EA525331A85005B49C0 /* MainWindowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A56C4EA425331A85005B49C0 /* MainWindowVC.m */; };
+		A56C4EAA25331FC7005B49C0 /* CanlendarToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = A56C4EA925331FC7005B49C0 /* CanlendarToolView.m */; };
+		A56C4EB1253336F5005B49C0 /* UITableView+AddCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = A56C4EB0253336F5005B49C0 /* UITableView+AddCorners.m */; };
+		A56C4EB525333D2A005B49C0 /* ToolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A56C4EB425333D2A005B49C0 /* ToolBarView.m */; };
+		A56C4EB825334442005B49C0 /* ToolBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A56C4EB725334441005B49C0 /* ToolBarCell.m */; };
+		A576718D253358F50034B37A /* UIView+AddCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = A576718C253358F50034B37A /* UIView+AddCorners.m */; };
+		A5767190253359DC0034B37A /* UIImageView+AddCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = A576718F253359DC0034B37A /* UIImageView+AddCorners.m */; };
+		A5C98583253ACAEC00D87F38 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C98582253ACAEC00D87F38 /* HomeVC.m */; };
+		A5C98587253ACE1C00D87F38 /* WeekVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C98586253ACE1C00D87F38 /* WeekVC.m */; };
+		A5C98594253AEF5C00D87F38 /* ScheduleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C98593253AEF5C00D87F38 /* ScheduleView.m */; };
+		A5DC6BA225582BF80096D59B /* SideMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DC6BA125582BF80096D59B /* SideMenuView.m */; };
+		A5E31352254D35990055D13E /* GFCalendarScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E31347254D35990055D13E /* GFCalendarScrollView.m */; };
+		A5E31353254D35990055D13E /* GFCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E3134B254D35990055D13E /* GFCalendarCell.m */; };
+		A5E31354254D35990055D13E /* GFCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E3134C254D35990055D13E /* GFCalendarView.m */; };
+		A5E31355254D35990055D13E /* NSDate+GFCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E3134E254D35990055D13E /* NSDate+GFCalendar.m */; };
+		A5E31356254D35990055D13E /* GFCalendarMonth.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E31350254D35990055D13E /* GFCalendarMonth.m */; };
+		A5E31359254D421C0055D13E /* YearVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E31358254D421C0055D13E /* YearVC.m */; };
+		A5E31363254D46E60055D13E /* YearView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E31362254D46E60055D13E /* YearView.m */; };
+		A5E31366254D47550055D13E /* YearDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E31365254D47550055D13E /* YearDetailCell.m */; };
+		A5E31369254D49D70055D13E /* YearDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E31368254D49D70055D13E /* YearDateCell.m */; };
+		A5E3136C255053D90055D13E /* CanvasVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E3136B255053D90055D13E /* CanvasVC.m */; };
+		A5E31395255182590055D13E /* Canvas.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E31394255182580055D13E /* Canvas.m */; };
+		A5E3139825518CC40055D13E /* UIImage+GetCurrentImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E3139725518CC40055D13E /* UIImage+GetCurrentImage.m */; };
+		A5E3139C25518E100055D13E /* UserNoteData.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E3139B25518E100055D13E /* UserNoteData.m */; };
+		A5E3139F2551B9DB0055D13E /* MonthScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E3139E2551B9DB0055D13E /* MonthScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		44921F882D83039CDDE2F49B /* Pods-PencilKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PencilKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PencilKit/Pods-PencilKit.debug.xcconfig"; sourceTree = "<group>"; };
+		7F3516CDB87EEFA2F425881E /* Pods-PencilKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PencilKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-PencilKit/Pods-PencilKit.release.xcconfig"; sourceTree = "<group>"; };
+		82700698C4D8B3E689BCD743 /* libPods-PencilKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PencilKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A525EB452533155900E47C9D /* PencilKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PencilKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A525EB482533155900E47C9D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A525EB492533155900E47C9D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -26,6 +82,110 @@
 		A525EB542533155A00E47C9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A525EB562533155A00E47C9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A525EB572533155A00E47C9D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A52BB7A3255421FB00684871 /* DetailDayVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailDayVC.h; sourceTree = "<group>"; };
+		A52BB7A4255421FB00684871 /* DetailDayVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailDayVC.m; sourceTree = "<group>"; };
+		A52BB7A6255593D300684871 /* TimeLineLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeLineLabel.h; sourceTree = "<group>"; };
+		A52BB7A7255593D300684871 /* TimeLineLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeLineLabel.m; sourceTree = "<group>"; };
+		A52BB7A925559ACF00684871 /* TimeLineTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeLineTextView.h; sourceTree = "<group>"; };
+		A52BB7AA25559ACF00684871 /* TimeLineTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeLineTextView.m; sourceTree = "<group>"; };
+		A52BB7AC255663AF00684871 /* CustomSheduleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSheduleCell.h; sourceTree = "<group>"; };
+		A52BB7AD255663AF00684871 /* CustomSheduleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSheduleCell.m; sourceTree = "<group>"; };
+		A52E86072552DFDF00759E0F /* AddNoteVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddNoteVC.h; sourceTree = "<group>"; };
+		A52E86082552DFDF00759E0F /* AddNoteVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddNoteVC.m; sourceTree = "<group>"; };
+		A55E0C15253B34090080939E /* MyTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTextField.h; sourceTree = "<group>"; };
+		A55E0C16253B34090080939E /* MyTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTextField.m; sourceTree = "<group>"; };
+		A55E0C222541B79E0080939E /* NavView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavView.h; sourceTree = "<group>"; };
+		A55E0C232541B79E0080939E /* NavView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavView.m; sourceTree = "<group>"; };
+		A55E0C282541BDA60080939E /* UIButton+AddCorners.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+AddCorners.h"; sourceTree = "<group>"; };
+		A55E0C292541BDA60080939E /* UIButton+AddCorners.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+AddCorners.m"; sourceTree = "<group>"; };
+		A55E0C322541C96B0080939E /* CanvasView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasView.h; sourceTree = "<group>"; };
+		A55E0C332541C96B0080939E /* CanvasView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasView.m; sourceTree = "<group>"; };
+		A55E0C382541CA3E0080939E /* TimeLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeLineView.h; sourceTree = "<group>"; };
+		A55E0C392541CA3E0080939E /* TimeLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeLineView.m; sourceTree = "<group>"; };
+		A55E0C402543081C0080939E /* TimeLineCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeLineCell.h; sourceTree = "<group>"; };
+		A55E0C412543081C0080939E /* TimeLineCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeLineCell.m; sourceTree = "<group>"; };
+		A55E0C4325430D550080939E /* HalfCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HalfCell.h; sourceTree = "<group>"; };
+		A55E0C4425430D550080939E /* HalfCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HalfCell.m; sourceTree = "<group>"; };
+		A55E0C4625440AFD0080939E /* ScheduleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCell.h; sourceTree = "<group>"; };
+		A55E0C4725440AFD0080939E /* ScheduleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCell.m; sourceTree = "<group>"; };
+		A55E0C49254512A60080939E /* MenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuView.h; sourceTree = "<group>"; };
+		A55E0C4A254512A60080939E /* MenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuView.m; sourceTree = "<group>"; };
+		A55E0C7C25455DF80080939E /* UITextField+AddCorners.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+AddCorners.h"; sourceTree = "<group>"; };
+		A55E0C7D25455DF80080939E /* UITextField+AddCorners.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+AddCorners.m"; sourceTree = "<group>"; };
+		A55E0C7F25455FBE0080939E /* UITextView+AddCorners.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+AddCorners.h"; sourceTree = "<group>"; };
+		A55E0C8025455FBE0080939E /* UITextView+AddCorners.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+AddCorners.m"; sourceTree = "<group>"; };
+		A55E0C82254584540080939E /* ScheduleTextViewCellTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleTextViewCellTableViewCell.h; sourceTree = "<group>"; };
+		A55E0C83254584540080939E /* ScheduleTextViewCellTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleTextViewCellTableViewCell.m; sourceTree = "<group>"; };
+		A55E0C84254584540080939E /* ScheduleTextViewCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleTextViewCellTableViewCell.xib; sourceTree = "<group>"; };
+		A55E0C8C2546F6200080939E /* MonthView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MonthView.h; sourceTree = "<group>"; };
+		A55E0C8D2546F6200080939E /* MonthView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MonthView.m; sourceTree = "<group>"; };
+		A55E0C922546F9860080939E /* MonthCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MonthCollectionViewCell.h; sourceTree = "<group>"; };
+		A55E0C932546F9860080939E /* MonthCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MonthCollectionViewCell.m; sourceTree = "<group>"; };
+		A55E0C9C254718910080939E /* PopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopView.xib; sourceTree = "<group>"; };
+		A55E0C9E25483DEB0080939E /* MonthVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MonthVC.h; sourceTree = "<group>"; };
+		A55E0C9F25483DEB0080939E /* MonthVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MonthVC.m; sourceTree = "<group>"; };
+		A55E0CA1254854350080939E /* NSDate+Calendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Calendar.h"; sourceTree = "<group>"; };
+		A55E0CA2254854350080939E /* NSDate+Calendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Calendar.m"; sourceTree = "<group>"; };
+		A55E0CA4254859D20080939E /* MonthModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MonthModel.h; sourceTree = "<group>"; };
+		A55E0CA5254859D20080939E /* MonthModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MonthModel.m; sourceTree = "<group>"; };
+		A55E0CB8254AE25F0080939E /* CalendarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalendarCell.h; sourceTree = "<group>"; };
+		A55E0CB9254AE25F0080939E /* CalendarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalendarCell.m; sourceTree = "<group>"; };
+		A55E0CBB254AEB450080939E /* CalendarModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalendarModel.h; sourceTree = "<group>"; };
+		A55E0CBC254AEB450080939E /* CalendarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalendarModel.m; sourceTree = "<group>"; };
+		A55E0CBE254AF2110080939E /* CalendarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalendarView.h; sourceTree = "<group>"; };
+		A55E0CBF254AF2110080939E /* CalendarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalendarView.m; sourceTree = "<group>"; };
+		A56C4EA325331A85005B49C0 /* MainWindowVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainWindowVC.h; sourceTree = "<group>"; };
+		A56C4EA425331A85005B49C0 /* MainWindowVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainWindowVC.m; sourceTree = "<group>"; };
+		A56C4EA625331B6E005B49C0 /* pch.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pch.pch; sourceTree = "<group>"; };
+		A56C4EA825331FC7005B49C0 /* CanlendarToolView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanlendarToolView.h; sourceTree = "<group>"; };
+		A56C4EA925331FC7005B49C0 /* CanlendarToolView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanlendarToolView.m; sourceTree = "<group>"; };
+		A56C4EAF253336F5005B49C0 /* UITableView+AddCorners.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+AddCorners.h"; sourceTree = "<group>"; };
+		A56C4EB0253336F5005B49C0 /* UITableView+AddCorners.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+AddCorners.m"; sourceTree = "<group>"; };
+		A56C4EB325333D2A005B49C0 /* ToolBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolBarView.h; sourceTree = "<group>"; };
+		A56C4EB425333D2A005B49C0 /* ToolBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToolBarView.m; sourceTree = "<group>"; };
+		A56C4EB625334441005B49C0 /* ToolBarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolBarCell.h; sourceTree = "<group>"; };
+		A56C4EB725334441005B49C0 /* ToolBarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToolBarCell.m; sourceTree = "<group>"; };
+		A576718B253358F50034B37A /* UIView+AddCorners.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+AddCorners.h"; sourceTree = "<group>"; };
+		A576718C253358F50034B37A /* UIView+AddCorners.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+AddCorners.m"; sourceTree = "<group>"; };
+		A576718E253359DC0034B37A /* UIImageView+AddCorners.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AddCorners.h"; sourceTree = "<group>"; };
+		A576718F253359DC0034B37A /* UIImageView+AddCorners.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AddCorners.m"; sourceTree = "<group>"; };
+		A5C98581253ACAEC00D87F38 /* HomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
+		A5C98582253ACAEC00D87F38 /* HomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
+		A5C98585253ACE1C00D87F38 /* WeekVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeekVC.h; sourceTree = "<group>"; };
+		A5C98586253ACE1C00D87F38 /* WeekVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeekVC.m; sourceTree = "<group>"; };
+		A5C98592253AEF5C00D87F38 /* ScheduleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleView.h; sourceTree = "<group>"; };
+		A5C98593253AEF5C00D87F38 /* ScheduleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleView.m; sourceTree = "<group>"; };
+		A5DC6BA025582BF80096D59B /* SideMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SideMenuView.h; sourceTree = "<group>"; };
+		A5DC6BA125582BF80096D59B /* SideMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SideMenuView.m; sourceTree = "<group>"; };
+		A5E31347254D35990055D13E /* GFCalendarScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFCalendarScrollView.m; sourceTree = "<group>"; };
+		A5E31348254D35990055D13E /* NSDate+GFCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+GFCalendar.h"; sourceTree = "<group>"; };
+		A5E31349254D35990055D13E /* GFCalendarMonth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFCalendarMonth.h; sourceTree = "<group>"; };
+		A5E3134A254D35990055D13E /* GFCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFCalendar.h; sourceTree = "<group>"; };
+		A5E3134B254D35990055D13E /* GFCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFCalendarCell.m; sourceTree = "<group>"; };
+		A5E3134C254D35990055D13E /* GFCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFCalendarView.m; sourceTree = "<group>"; };
+		A5E3134D254D35990055D13E /* GFCalendarScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFCalendarScrollView.h; sourceTree = "<group>"; };
+		A5E3134E254D35990055D13E /* NSDate+GFCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+GFCalendar.m"; sourceTree = "<group>"; };
+		A5E3134F254D35990055D13E /* GFCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFCalendarCell.h; sourceTree = "<group>"; };
+		A5E31350254D35990055D13E /* GFCalendarMonth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFCalendarMonth.m; sourceTree = "<group>"; };
+		A5E31351254D35990055D13E /* GFCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFCalendarView.h; sourceTree = "<group>"; };
+		A5E31357254D421C0055D13E /* YearVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YearVC.h; sourceTree = "<group>"; };
+		A5E31358254D421C0055D13E /* YearVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YearVC.m; sourceTree = "<group>"; };
+		A5E31361254D46E60055D13E /* YearView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YearView.h; sourceTree = "<group>"; };
+		A5E31362254D46E60055D13E /* YearView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YearView.m; sourceTree = "<group>"; };
+		A5E31364254D47550055D13E /* YearDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YearDetailCell.h; sourceTree = "<group>"; };
+		A5E31365254D47550055D13E /* YearDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YearDetailCell.m; sourceTree = "<group>"; };
+		A5E31367254D49D70055D13E /* YearDateCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YearDateCell.h; sourceTree = "<group>"; };
+		A5E31368254D49D70055D13E /* YearDateCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YearDateCell.m; sourceTree = "<group>"; };
+		A5E3136A255053D80055D13E /* CanvasVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasVC.h; sourceTree = "<group>"; };
+		A5E3136B255053D90055D13E /* CanvasVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasVC.m; sourceTree = "<group>"; };
+		A5E31393255182580055D13E /* Canvas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canvas.h; sourceTree = "<group>"; };
+		A5E31394255182580055D13E /* Canvas.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Canvas.m; sourceTree = "<group>"; };
+		A5E3139625518CC40055D13E /* UIImage+GetCurrentImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+GetCurrentImage.h"; sourceTree = "<group>"; };
+		A5E3139725518CC40055D13E /* UIImage+GetCurrentImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GetCurrentImage.m"; sourceTree = "<group>"; };
+		A5E3139A25518E100055D13E /* UserNoteData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserNoteData.h; sourceTree = "<group>"; };
+		A5E3139B25518E100055D13E /* UserNoteData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserNoteData.m; sourceTree = "<group>"; };
+		A5E3139D2551B9DB0055D13E /* MonthScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MonthScrollView.h; sourceTree = "<group>"; };
+		A5E3139E2551B9DB0055D13E /* MonthScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MonthScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +193,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1415F11DF5A935FBAFF33952 /* libPods-PencilKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0971E8E0F1A331D9C21E5040 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				82700698C4D8B3E689BCD743 /* libPods-PencilKit.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A525EB3C2533155900E47C9D = {
 			isa = PBXGroup;
 			children = (
 				A525EB472533155900E47C9D /* PencilKit */,
 				A525EB462533155900E47C9D /* Products */,
+				BF06CA767ABF122CCECED823 /* Pods */,
+				0971E8E0F1A331D9C21E5040 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +229,15 @@
 		A525EB472533155900E47C9D /* PencilKit */ = {
 			isa = PBXGroup;
 			children = (
+				A5E3139925518DDD0055D13E /* NoteData */,
+				A5E31346254D35990055D13E /* GFCalendar */,
+				A55E0C212541B78A0080939E /* NavView */,
+				A55E0C14253B33ED0080939E /* ToolClass */,
+				A5767191253360A20034B37A /* CalendarBar */,
+				A56C4EB225333D0F005B49C0 /* ToolBar */,
+				A56C4EAB25333503005B49C0 /* Category */,
+				A56C4EA725331FA6005B49C0 /* CanlendarTool */,
+				A56C4EA225331A54005B49C0 /* MainWindow */,
 				A525EB482533155900E47C9D /* AppDelegate.h */,
 				A525EB492533155900E47C9D /* AppDelegate.m */,
 				A525EB4B2533155900E47C9D /* ViewController.h */,
@@ -67,8 +247,240 @@
 				A525EB532533155A00E47C9D /* LaunchScreen.storyboard */,
 				A525EB562533155A00E47C9D /* Info.plist */,
 				A525EB572533155A00E47C9D /* main.m */,
+				A56C4EA625331B6E005B49C0 /* pch.pch */,
 			);
 			path = PencilKit;
+			sourceTree = "<group>";
+		};
+		A55E0C14253B33ED0080939E /* ToolClass */ = {
+			isa = PBXGroup;
+			children = (
+				A55E0C15253B34090080939E /* MyTextField.h */,
+				A55E0C16253B34090080939E /* MyTextField.m */,
+				A52BB7A6255593D300684871 /* TimeLineLabel.h */,
+				A52BB7A7255593D300684871 /* TimeLineLabel.m */,
+				A52BB7A925559ACF00684871 /* TimeLineTextView.h */,
+				A52BB7AA25559ACF00684871 /* TimeLineTextView.m */,
+				A5DC6BA025582BF80096D59B /* SideMenuView.h */,
+				A5DC6BA125582BF80096D59B /* SideMenuView.m */,
+			);
+			path = ToolClass;
+			sourceTree = "<group>";
+		};
+		A55E0C212541B78A0080939E /* NavView */ = {
+			isa = PBXGroup;
+			children = (
+				A55E0C222541B79E0080939E /* NavView.h */,
+				A55E0C232541B79E0080939E /* NavView.m */,
+				A55E0C49254512A60080939E /* MenuView.h */,
+				A55E0C4A254512A60080939E /* MenuView.m */,
+				A55E0C9C254718910080939E /* PopView.xib */,
+			);
+			path = NavView;
+			sourceTree = "<group>";
+		};
+		A55E0C312541C92C0080939E /* CanvasView */ = {
+			isa = PBXGroup;
+			children = (
+				A55E0C322541C96B0080939E /* CanvasView.h */,
+				A55E0C332541C96B0080939E /* CanvasView.m */,
+				A5E31393255182580055D13E /* Canvas.h */,
+				A5E31394255182580055D13E /* Canvas.m */,
+			);
+			path = CanvasView;
+			sourceTree = "<group>";
+		};
+		A55E0C872546F4620080939E /* Month */ = {
+			isa = PBXGroup;
+			children = (
+				A55E0C8C2546F6200080939E /* MonthView.h */,
+				A55E0C8D2546F6200080939E /* MonthView.m */,
+				A55E0C922546F9860080939E /* MonthCollectionViewCell.h */,
+				A55E0C932546F9860080939E /* MonthCollectionViewCell.m */,
+				A55E0CA4254859D20080939E /* MonthModel.h */,
+				A55E0CA5254859D20080939E /* MonthModel.m */,
+				A5E3139D2551B9DB0055D13E /* MonthScrollView.h */,
+				A5E3139E2551B9DB0055D13E /* MonthScrollView.m */,
+			);
+			path = Month;
+			sourceTree = "<group>";
+		};
+		A55E0CB2254ADF4A0080939E /* CalendarVC */ = {
+			isa = PBXGroup;
+			children = (
+				A55E0CB8254AE25F0080939E /* CalendarCell.h */,
+				A55E0CB9254AE25F0080939E /* CalendarCell.m */,
+				A55E0CBB254AEB450080939E /* CalendarModel.h */,
+				A55E0CBC254AEB450080939E /* CalendarModel.m */,
+				A55E0CBE254AF2110080939E /* CalendarView.h */,
+				A55E0CBF254AF2110080939E /* CalendarView.m */,
+			);
+			path = CalendarVC;
+			sourceTree = "<group>";
+		};
+		A56C4EA225331A54005B49C0 /* MainWindow */ = {
+			isa = PBXGroup;
+			children = (
+				A5E3135A254D44D80055D13E /* YearVC */,
+				A55E0CB2254ADF4A0080939E /* CalendarVC */,
+				A55E0C872546F4620080939E /* Month */,
+				A55E0C312541C92C0080939E /* CanvasView */,
+				A5C98591253AEF2F00D87F38 /* ScheduleView */,
+				A5C98576253AC92A00D87F38 /* TimeLineView */,
+				A5C985712535C59A00D87F38 /* Controller */,
+			);
+			path = MainWindow;
+			sourceTree = "<group>";
+		};
+		A56C4EA725331FA6005B49C0 /* CanlendarTool */ = {
+			isa = PBXGroup;
+			children = (
+				A56C4EA825331FC7005B49C0 /* CanlendarToolView.h */,
+				A56C4EA925331FC7005B49C0 /* CanlendarToolView.m */,
+			);
+			path = CanlendarTool;
+			sourceTree = "<group>";
+		};
+		A56C4EAB25333503005B49C0 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				A56C4EAF253336F5005B49C0 /* UITableView+AddCorners.h */,
+				A56C4EB0253336F5005B49C0 /* UITableView+AddCorners.m */,
+				A576718B253358F50034B37A /* UIView+AddCorners.h */,
+				A576718C253358F50034B37A /* UIView+AddCorners.m */,
+				A576718E253359DC0034B37A /* UIImageView+AddCorners.h */,
+				A576718F253359DC0034B37A /* UIImageView+AddCorners.m */,
+				A55E0C282541BDA60080939E /* UIButton+AddCorners.h */,
+				A55E0C292541BDA60080939E /* UIButton+AddCorners.m */,
+				A55E0C7C25455DF80080939E /* UITextField+AddCorners.h */,
+				A55E0C7D25455DF80080939E /* UITextField+AddCorners.m */,
+				A55E0C7F25455FBE0080939E /* UITextView+AddCorners.h */,
+				A55E0C8025455FBE0080939E /* UITextView+AddCorners.m */,
+				A55E0CA1254854350080939E /* NSDate+Calendar.h */,
+				A55E0CA2254854350080939E /* NSDate+Calendar.m */,
+				A5E3139625518CC40055D13E /* UIImage+GetCurrentImage.h */,
+				A5E3139725518CC40055D13E /* UIImage+GetCurrentImage.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		A56C4EB225333D0F005B49C0 /* ToolBar */ = {
+			isa = PBXGroup;
+			children = (
+				A56C4EB325333D2A005B49C0 /* ToolBarView.h */,
+				A56C4EB425333D2A005B49C0 /* ToolBarView.m */,
+				A56C4EB625334441005B49C0 /* ToolBarCell.h */,
+				A56C4EB725334441005B49C0 /* ToolBarCell.m */,
+			);
+			path = ToolBar;
+			sourceTree = "<group>";
+		};
+		A5767191253360A20034B37A /* CalendarBar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CalendarBar;
+			sourceTree = "<group>";
+		};
+		A5C985712535C59A00D87F38 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A56C4EA325331A85005B49C0 /* MainWindowVC.h */,
+				A56C4EA425331A85005B49C0 /* MainWindowVC.m */,
+				A5C98581253ACAEC00D87F38 /* HomeVC.h */,
+				A5C98582253ACAEC00D87F38 /* HomeVC.m */,
+				A5C98585253ACE1C00D87F38 /* WeekVC.h */,
+				A5C98586253ACE1C00D87F38 /* WeekVC.m */,
+				A55E0C9E25483DEB0080939E /* MonthVC.h */,
+				A55E0C9F25483DEB0080939E /* MonthVC.m */,
+				A5E31357254D421C0055D13E /* YearVC.h */,
+				A5E31358254D421C0055D13E /* YearVC.m */,
+				A5E3136A255053D80055D13E /* CanvasVC.h */,
+				A5E3136B255053D90055D13E /* CanvasVC.m */,
+				A52E86072552DFDF00759E0F /* AddNoteVC.h */,
+				A52E86082552DFDF00759E0F /* AddNoteVC.m */,
+				A52BB7A3255421FB00684871 /* DetailDayVC.h */,
+				A52BB7A4255421FB00684871 /* DetailDayVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A5C98576253AC92A00D87F38 /* TimeLineView */ = {
+			isa = PBXGroup;
+			children = (
+				A55E0C382541CA3E0080939E /* TimeLineView.h */,
+				A55E0C392541CA3E0080939E /* TimeLineView.m */,
+				A55E0C402543081C0080939E /* TimeLineCell.h */,
+				A55E0C412543081C0080939E /* TimeLineCell.m */,
+				A55E0C4325430D550080939E /* HalfCell.h */,
+				A55E0C4425430D550080939E /* HalfCell.m */,
+			);
+			path = TimeLineView;
+			sourceTree = "<group>";
+		};
+		A5C98591253AEF2F00D87F38 /* ScheduleView */ = {
+			isa = PBXGroup;
+			children = (
+				A5C98592253AEF5C00D87F38 /* ScheduleView.h */,
+				A5C98593253AEF5C00D87F38 /* ScheduleView.m */,
+				A55E0C4625440AFD0080939E /* ScheduleCell.h */,
+				A55E0C4725440AFD0080939E /* ScheduleCell.m */,
+				A55E0C82254584540080939E /* ScheduleTextViewCellTableViewCell.h */,
+				A55E0C83254584540080939E /* ScheduleTextViewCellTableViewCell.m */,
+				A55E0C84254584540080939E /* ScheduleTextViewCellTableViewCell.xib */,
+				A52BB7AC255663AF00684871 /* CustomSheduleCell.h */,
+				A52BB7AD255663AF00684871 /* CustomSheduleCell.m */,
+			);
+			path = ScheduleView;
+			sourceTree = "<group>";
+		};
+		A5E31346254D35990055D13E /* GFCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				A5E31347254D35990055D13E /* GFCalendarScrollView.m */,
+				A5E31348254D35990055D13E /* NSDate+GFCalendar.h */,
+				A5E31349254D35990055D13E /* GFCalendarMonth.h */,
+				A5E3134A254D35990055D13E /* GFCalendar.h */,
+				A5E3134B254D35990055D13E /* GFCalendarCell.m */,
+				A5E3134C254D35990055D13E /* GFCalendarView.m */,
+				A5E3134D254D35990055D13E /* GFCalendarScrollView.h */,
+				A5E3134E254D35990055D13E /* NSDate+GFCalendar.m */,
+				A5E3134F254D35990055D13E /* GFCalendarCell.h */,
+				A5E31350254D35990055D13E /* GFCalendarMonth.m */,
+				A5E31351254D35990055D13E /* GFCalendarView.h */,
+			);
+			path = GFCalendar;
+			sourceTree = SOURCE_ROOT;
+		};
+		A5E3135A254D44D80055D13E /* YearVC */ = {
+			isa = PBXGroup;
+			children = (
+				A5E31361254D46E60055D13E /* YearView.h */,
+				A5E31362254D46E60055D13E /* YearView.m */,
+				A5E31364254D47550055D13E /* YearDetailCell.h */,
+				A5E31365254D47550055D13E /* YearDetailCell.m */,
+				A5E31367254D49D70055D13E /* YearDateCell.h */,
+				A5E31368254D49D70055D13E /* YearDateCell.m */,
+			);
+			path = YearVC;
+			sourceTree = "<group>";
+		};
+		A5E3139925518DDD0055D13E /* NoteData */ = {
+			isa = PBXGroup;
+			children = (
+				A5E3139A25518E100055D13E /* UserNoteData.h */,
+				A5E3139B25518E100055D13E /* UserNoteData.m */,
+			);
+			path = NoteData;
+			sourceTree = "<group>";
+		};
+		BF06CA767ABF122CCECED823 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				44921F882D83039CDDE2F49B /* Pods-PencilKit.debug.xcconfig */,
+				7F3516CDB87EEFA2F425881E /* Pods-PencilKit.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -78,6 +490,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A525EB5B2533155A00E47C9D /* Build configuration list for PBXNativeTarget "PencilKit" */;
 			buildPhases = (
+				81C6E9790BFA5511DE1EFBA1 /* [CP] Check Pods Manifest.lock */,
 				A525EB412533155900E47C9D /* Sources */,
 				A525EB422533155900E47C9D /* Frameworks */,
 				A525EB432533155900E47C9D /* Resources */,
@@ -130,20 +543,93 @@
 			files = (
 				A525EB552533155A00E47C9D /* LaunchScreen.storyboard in Resources */,
 				A525EB522533155A00E47C9D /* Assets.xcassets in Resources */,
+				A55E0C86254584540080939E /* ScheduleTextViewCellTableViewCell.xib in Resources */,
 				A525EB502533155900E47C9D /* Main.storyboard in Resources */,
+				A55E0C9D254718910080939E /* PopView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		81C6E9790BFA5511DE1EFBA1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PencilKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A525EB412533155900E47C9D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A55E0C422543081C0080939E /* TimeLineCell.m in Sources */,
 				A525EB4D2533155900E47C9D /* ViewController.m in Sources */,
+				A5767190253359DC0034B37A /* UIImageView+AddCorners.m in Sources */,
+				A5E31363254D46E60055D13E /* YearView.m in Sources */,
+				A55E0CBA254AE25F0080939E /* CalendarCell.m in Sources */,
+				A55E0CA025483DEB0080939E /* MonthVC.m in Sources */,
+				A56C4EAA25331FC7005B49C0 /* CanlendarToolView.m in Sources */,
+				A52BB7AE255663AF00684871 /* CustomSheduleCell.m in Sources */,
+				A55E0C7E25455DF80080939E /* UITextField+AddCorners.m in Sources */,
+				A5E31395255182590055D13E /* Canvas.m in Sources */,
+				A56C4EB525333D2A005B49C0 /* ToolBarView.m in Sources */,
+				A52E86092552DFDF00759E0F /* AddNoteVC.m in Sources */,
+				A55E0CBD254AEB450080939E /* CalendarModel.m in Sources */,
+				A55E0CA3254854350080939E /* NSDate+Calendar.m in Sources */,
+				A56C4EB825334442005B49C0 /* ToolBarCell.m in Sources */,
+				A55E0C2A2541BDA60080939E /* UIButton+AddCorners.m in Sources */,
+				A52BB7A8255593D300684871 /* TimeLineLabel.m in Sources */,
+				A5E31359254D421C0055D13E /* YearVC.m in Sources */,
+				A5E31352254D35990055D13E /* GFCalendarScrollView.m in Sources */,
+				A52BB7AB25559ACF00684871 /* TimeLineTextView.m in Sources */,
+				A55E0C8125455FBE0080939E /* UITextView+AddCorners.m in Sources */,
+				A5E31356254D35990055D13E /* GFCalendarMonth.m in Sources */,
+				A55E0C242541B79E0080939E /* NavView.m in Sources */,
+				A55E0CA6254859D30080939E /* MonthModel.m in Sources */,
+				A55E0C85254584540080939E /* ScheduleTextViewCellTableViewCell.m in Sources */,
 				A525EB582533155A00E47C9D /* main.m in Sources */,
+				A5E31369254D49D70055D13E /* YearDateCell.m in Sources */,
+				A55E0C4825440AFE0080939E /* ScheduleCell.m in Sources */,
+				A5C98587253ACE1C00D87F38 /* WeekVC.m in Sources */,
+				A5C98594253AEF5C00D87F38 /* ScheduleView.m in Sources */,
 				A525EB4A2533155900E47C9D /* AppDelegate.m in Sources */,
+				A5E3139F2551B9DB0055D13E /* MonthScrollView.m in Sources */,
+				A55E0C4525430D550080939E /* HalfCell.m in Sources */,
+				A5E31354254D35990055D13E /* GFCalendarView.m in Sources */,
+				A55E0C342541C96B0080939E /* CanvasView.m in Sources */,
+				A56C4EB1253336F5005B49C0 /* UITableView+AddCorners.m in Sources */,
+				A55E0C3A2541CA3E0080939E /* TimeLineView.m in Sources */,
+				A55E0C952546F9860080939E /* MonthCollectionViewCell.m in Sources */,
+				A55E0C4B254512A60080939E /* MenuView.m in Sources */,
+				A55E0C8E2546F6200080939E /* MonthView.m in Sources */,
+				A5E31353254D35990055D13E /* GFCalendarCell.m in Sources */,
+				A55E0CC0254AF2110080939E /* CalendarView.m in Sources */,
+				A5C98583253ACAEC00D87F38 /* HomeVC.m in Sources */,
+				A5E3139C25518E100055D13E /* UserNoteData.m in Sources */,
+				A55E0C17253B34090080939E /* MyTextField.m in Sources */,
+				A5E31366254D47550055D13E /* YearDetailCell.m in Sources */,
+				A5E31355254D35990055D13E /* NSDate+GFCalendar.m in Sources */,
+				A56C4EA525331A85005B49C0 /* MainWindowVC.m in Sources */,
+				A5E3136C255053D90055D13E /* CanvasVC.m in Sources */,
+				A52BB7A5255421FB00684871 /* DetailDayVC.m in Sources */,
+				A5E3139825518CC40055D13E /* UIImage+GetCurrentImage.m in Sources */,
+				A576718D253358F50034B37A /* UIView+AddCorners.m in Sources */,
+				A5DC6BA225582BF80096D59B /* SideMenuView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,34 +769,44 @@
 		};
 		A525EB5C2533155A00E47C9D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44921F882D83039CDDE2F49B /* Pods-PencilKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K2LCTNNBWQ;
+				GCC_PREFIX_HEADER = /Users/leiyuan/Documents/iOS/PencilKit/PencilKit/pch.pch;
 				INFOPLIST_FILE = PencilKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = leo.PencilKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		A525EB5D2533155A00E47C9D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F3516CDB87EEFA2F425881E /* Pods-PencilKit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K2LCTNNBWQ;
+				GCC_PREFIX_HEADER = /Users/leiyuan/Documents/iOS/PencilKit/PencilKit/pch.pch;
 				INFOPLIST_FILE = PencilKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = leo.PencilKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

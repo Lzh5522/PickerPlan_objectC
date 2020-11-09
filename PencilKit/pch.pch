@@ -1,0 +1,27 @@
+//
+//  pch.pch
+//  PencilKit
+//
+//  Created by 雷源 on 2020/10/11.
+//  Copyright © 2020 雷源. All rights reserved.
+//
+
+#ifndef pch_pch
+#define pch_pch
+#define MAS_SHORTHAND
+#define MAS_SHORTHAND_GLOBALS
+#import <Masonry.h>
+#import "UITableView+AddCorners.h"
+#import "UIView+AddCorners.h"
+#import "UIImageView+AddCorners.h"
+#import "UserNoteData.h"
+#import <EventKit/EventKit.h>
+#import <EventKitUI/EventKitUI.h>
+#define navigationViewHeight 70
+#define RGB(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+#define bg_color [UIColor colorWithRed:255/255.0 green:251/255.0 blue:236/255.0 alpha:1]
+#define font_color [UIColor colorWithRed:74/255.0 green:71/255.0 blue:110/255.0 alpha:1]
+#define ScreenW [UIScreen mainScreen].bounds.size.width
+#define ScreenH [UIScreen mainScreen].bounds.size.height
+#define topPadding 30
+#endif /* pch_pch */
