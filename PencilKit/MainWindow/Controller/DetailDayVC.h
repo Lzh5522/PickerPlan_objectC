@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong) Canvas * canvasView;
 @property(nonatomic,strong) UIImage * img;
 @property(nonatomic,strong) NSDate * day;
+@property(nonatomic,strong) PKCanvasView * canvas;
+@property(nonatomic,strong) PKToolPicker * picker;
 @end
 
 NS_ASSUME_NONNULL_END

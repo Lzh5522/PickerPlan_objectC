@@ -29,10 +29,14 @@
 #import "AddNoteVC.h"
 #import "NSDate+Calendar.h"
 #import "CanlendarToolView.h"
+#import "MenuView.h"
+#import "ShareVC.h"
+#import "TimeVC.h"
 @interface MainWindowVC ()<NavigationViewDelegate,UIPopoverPresentationControllerDelegate>
 
 @property(nonatomic,strong) NavView * navView;
-@property(nonatomic,strong) UITableView * menuView;
+@property(nonatomic,strong) MenuView * menuView;
+@property(nonatomic,strong) UIViewController * popVC;
 
 @end
 
@@ -41,10 +45,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tabBar.hidden = YES;
+    [self setUpUI];
 }
-
+-(Canvas *)canvas{
+    if (!_canvas) {
+        _canvas = [[Canvas alloc]initWithFrame:self.view.bounds];
+    }
+    return _canvas;
+}
 -(void)setUpUI{
-    self.navigationController.navigationBar.hidden = YES;
+    self.count = 0;
     [self.view addSubview:self.navView];
     [self.navView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view);
@@ -54,16 +64,17 @@
     }];
     [self.view addSubview:self.menuView];
     HomeVC * homeVC = [[HomeVC alloc]init];
-    UINavigationController * navHome = [[UINavigationController alloc]initWithRootViewController:homeVC];
-    [self addChildViewController:navHome];
+    
+    [self addChildViewController:homeVC];
     MonthVC * monthVC = [[MonthVC alloc]init];
-    UINavigationController * navMonth = [[UINavigationController alloc]initWithRootViewController:monthVC];
-    [self addChildViewController:navMonth];
+    
+    [self addChildViewController:monthVC];
     YearVC * yearVC = [[YearVC alloc]init];
-    UINavigationController * navYear = [[UINavigationController alloc]initWithRootViewController:yearVC];
-    [self addChildViewController:navYear];
-    UIViewController * vc = [[UIViewController alloc]init];
-    [self addChildViewController:vc];
+    
+    [self addChildViewController:yearVC];
+    TimeVC * timeVC = [[TimeVC alloc]init];
+    
+    [self addChildViewController:timeVC];
     [self addNotificationObserver];
 }
 - (void)addNotificationObserver {
@@ -72,11 +83,49 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeMonthCalendarHeaderAction:) name:@"MonthScrollView.ChangeCalendarHeaderNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectDayJump:) name:@"MonthScrollView.SelectedDay.tiao" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectNoReuslt) name:@"MonthScrollView.NoResult" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectMonthJump:) name:@"YearVC.SelectedMonth" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectMonthDetialJump:) name:@"YearVC.SelectedMonthDetail" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectCalendarDay:) name:@"Calendar.SelectedDay" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectNoReuslt) name:@" CalendarScrollView.SelectedNoResult" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removePopVC) name:@" CalendarScrollView.removePOPVC" object:nil];
+   
+}
+-(void)removePopVC{
+    [self.popVC dismissViewControllerAnimated:NO completion:nil];
+}
+-(void)selectCalendarDay:(NSNotification *)sender{
+    NSDictionary * dic = sender.userInfo;
+    NSDate * date = dic[@"select_day"];
+    UserNoteData * noteData = dic[@"userNoteData"];
+    DetailDayVC * detailVC = [[DetailDayVC alloc]init];
+    detailVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    detailVC.img = noteData.result;
+    detailVC.day = date;
+    [self presentViewController:detailVC animated:NO completion:nil];
+}
+-(void)selectMonthDetialJump:(NSNotification *) sender{
+    //更改标题
+    NSDictionary * dic = sender.userInfo;
+    NSDate * date = dic[@"selectedDate"];
+    self.navView.timeLabel.text =[NSString stringWithFormat:@"%ld年%ld月",[date dateYear],[date dateMonth]];
+    //界面跳转
+    self.navView.canlenderToolView.weekBtn.selected = YES;
+    self.navView.canlenderToolView.monthBtn.selected = NO;
+    self.selectedIndex= 1;
+}
+-(void)selectMonthJump:(NSNotification *)sender{
+    //界面跳转
+    NSDictionary * dic = sender.userInfo;
+    NSDate * date = dic[@"selectedDate"];
+    self.navView.timeLabel.text =[NSString stringWithFormat:@"%ld年%ld月",[date dateYear],[date dateMonth]];
+    self.navView.canlenderToolView.weekBtn.selected = YES;
+    self.navView.canlenderToolView.monthBtn.selected = NO;
+    self.selectedIndex= 1;
 }
 -(void)selectNoReuslt{
-    UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"The day have not note!" message:nil preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *alertT = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"那一天没有笔记" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *alertT = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [alertVC dismissViewControllerAnimated:YES completion:nil];
         }];
     [alertVC addAction:alertT];
@@ -104,13 +153,11 @@
     NSString *filePath = [path stringByAppendingPathComponent:selectDay];
     userNoteData = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
     if(userNoteData){
-        DetailDayVC * mainVC = [[DetailDayVC alloc]init];
-        mainVC.modalPresentationStyle = UIModalPresentationFullScreen;
-        mainVC.img = userNoteData.result;
-        mainVC.day = day;
-        UINavigationController * vc = self.viewControllers[1];
-        
-        [vc pushViewController:mainVC animated:NO];
+        DetailDayVC * detailVC = [[DetailDayVC alloc]init];
+        detailVC.modalPresentationStyle = UIModalPresentationFullScreen;
+        detailVC.img = userNoteData.result;
+        detailVC.day = day;
+        [self presentViewController:detailVC animated:NO completion:nil];
     }
   
 }
@@ -119,16 +166,17 @@
     NSDate *day0 = dic[@"select_day"];
     NSDate *day = [day0 previousDate];
     HomeVC * vc = self.viewControllers[0];
+    [vc.view setNeedsLayout];
     vc.drawing = [[PKDrawing alloc]init];
     vc.result = [[UIImage alloc]init];
     vc.selectDay = day;
     
+    self.navView.canlenderToolView.dayBtn.selected = YES;
+    self.navView.canlenderToolView.weekBtn.selected = NO;
+    self.selectedIndex = 0;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.navView.canlenderToolView btnSelectDayBtn];
-
+        self.navView.timeLabel.text  = [self getCurrentTimeAndWeekDayFromDate:day];
     });
-    [self handleCanlenderToolAction:0];
-    self.navView.timeLabel.text  = [self getCurrentTimeAndWeekDayFromDate:day];
 }
 -(void)changeCalendarHeaderAction:(NSNotification *)sender{
     NSDictionary *dic = sender.userInfo;
@@ -139,24 +187,6 @@
     _navView.timeLabel.text =  title;
 }
 
--(void)Calandar{
-    //生成事件数据库对象
-    EKEventStore *eventDB = [[EKEventStore alloc] init];
-    //申请事件类型权限
-    [eventDB requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
-        if (granted) { //授权是否成功
-           
-        }
-    }];
-    EKEvent *myEvent  = [EKEvent eventWithEventStore:eventDB]; //创建一个日历事件
-    myEvent.title     = @"哈哈哈哈哈哈测试";  //标题
-    myEvent.startDate = [NSDate date]; //开始date   required
-    myEvent.endDate   = [NSDate date];  //结束date    required
-    [myEvent addAlarm:[EKAlarm alarmWithAbsoluteDate:[NSDate date]]]; //添加一个闹钟  optional
-    [myEvent setCalendar:[eventDB defaultCalendarForNewEvents]]; //添加calendar  required
-    NSError *err;
-    [eventDB saveEvent:myEvent span:EKSpanThisEvent error:&err]; //保存
-}
 - (NSString *)getCurrentTimeYear{
     NSDate *date = [NSDate date];
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
@@ -202,16 +232,26 @@
 }
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    [self setUpUI];
+    
 }
 -(void)handleCanlenderToolAction:(NSInteger)tag{
+    HomeVC * homeVC = [[HomeVC alloc]init];
+    homeVC = self.viewControllers[0];
+    Canvas * c = [[Canvas alloc]init];
+    
+    for (NSInteger i =0; i<homeVC.view.subviews.count; i++) {
+        if ([homeVC.view.subviews[i] isKindOfClass:[Canvas class]]) {
+            c = homeVC.view.subviews[i];
+        }
+    }
     switch (tag) {
         case 0:
             self.selectedIndex = 0;
-//            [self.childViewControllers[0] becomeFirstResponder];
+            c.canvas.drawing = [PKDrawing new];
             self.navView.menuBtn.hidden = NO;
             self.navView.shareBtn.hidden = NO;
             self.navView.canlendarBtn.hidden = NO;
+            self.navView.timeLabel.hidden = NO;
             self.navView.addBtn.hidden = NO;
             self.navView.pkToolBtn.hidden = NO;
             self.navView.timeLabel.text = [self getCurrentTimeAndWeekDay];
@@ -222,14 +262,16 @@
             self.selectedIndex = 1;
             self.navView.timeLabel.text = [self getCurrentTimeYearAndMonth];
             self.navView.menuBtn.hidden = NO;
+            self.navView.timeLabel.hidden = NO;
             self.navView.shareBtn.hidden = NO;
             self.navView.canlendarBtn.hidden = NO;
-            self.navView.addBtn.hidden = NO;
-            self.navView.pkToolBtn.hidden = NO;
+            self.navView.addBtn.hidden = YES;
+            self.navView.pkToolBtn.hidden = YES;
             break;
         case 2:
             self.selectedIndex = 2;
             self.navView.timeLabel.text = [self getCurrentTimeYear];
+            self.navView.timeLabel.hidden = NO;
             self.navView.menuBtn.hidden = NO;
             self.navView.shareBtn.hidden = NO;
             self.navView.canlendarBtn.hidden = NO;
@@ -239,6 +281,7 @@
         case 3:
             self.selectedIndex = 3;
             self.navView.menuBtn.hidden = NO;
+            self.navView.timeLabel.hidden = YES;
             self.navView.shareBtn.hidden = NO;
             self.navView.canlendarBtn.hidden = NO;
             self.navView.addBtn.hidden = YES;
@@ -248,40 +291,29 @@
             break;
     }
 }
-
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.menuView.frame = CGRectMake(-320, 0, 320, ScreenH);
+    }];
+}
 -(void)handleBtnAction:(UIButton *)btn{
     switch (btn.tag) {
         case 10:
         {
             //menu
-            [UIView animateWithDuration:1 animations:^{
+            [UIView animateWithDuration:0.5 animations:^{
                 self.menuView.frame = CGRectMake(0, 0, 320, ScreenH);
             }];
-//            NSMutableArray * arr = [NSMutableArray array];
-//            UIAction * action0 = [UIAction actionWithTitle:@"菜单1" image:[UIImage imageNamed:@""] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
-//
-//            }];
-//
-//            UIAction * action1 = [UIAction actionWithTitle:@"菜单2" image:[UIImage imageNamed:@""] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
-//                
-//            }];
-//            UIAction * action3 = [UIAction actionWithTitle:@"菜单1" image:[UIImage imageNamed:@""] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
-//
-//            }];
-            
-            
         }
             break;
         case 11:
         {
-            UIViewController *popVC = [[UIViewController alloc] init];
-            UIImageView * popImageViwe = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"popView"]];
-            popImageViwe.contentMode = UIViewContentModeScaleAspectFit;
-            [popVC.view addSubview:popImageViwe];
-            popImageViwe.frame = popVC.view.frame;
+            
+            ShareVC *popVC = [[ShareVC alloc] init];
             popVC.modalPresentationStyle = UIModalPresentationPopover;
                 // 弹出视图的大小
-            popVC.preferredContentSize = CGSizeMake(300, 200);
+            popVC.preferredContentSize = CGSizeMake(375, 600);
 
                 // 弹出视图设置
             UIPopoverPresentationController *popver = popVC.popoverPresentationController;
@@ -302,15 +334,16 @@
             break;
         case 12:{
             UIViewController *popVC = [[UIViewController alloc]init];
-            popVC.modalPresentationStyle = UIModalPresentationPopover;
+            self.popVC = popVC;
+            self.popVC.modalPresentationStyle = UIModalPresentationPopover;
                 // 弹出视图的大小
-            popVC.preferredContentSize = CGSizeMake(300, 260);
+            self.popVC.preferredContentSize = CGSizeMake(300, 260);
             CalendarView * view = [[CalendarView alloc]initWithFrame:CGRectMake(0, 0, 300, 280)];
             
-            [popVC.view addSubview:view];
+            [self.popVC.view addSubview:view];
             
                 // 弹出视图设置
-            UIPopoverPresentationController *popver = popVC.popoverPresentationController;
+            UIPopoverPresentationController *popver = self.popVC.popoverPresentationController;
             popver.delegate = self;
                 //弹出时参照视图的大小，与弹框的位置有关
             popver.sourceRect = btn.bounds;
@@ -318,7 +351,7 @@
             popver.sourceView = btn;
                 //弹框的箭头方向
             popver.permittedArrowDirections = UIPopoverArrowDirectionUp;
-            [self presentViewController:popVC animated:YES completion:nil];
+            [self presentViewController:self.popVC animated:YES completion:nil];
             btn.selected = YES;
         }
             break;
@@ -326,7 +359,6 @@
         {
             
             if(btn.selected == YES){
-                
                 UIViewController * vc = self.viewControllers[0];
                 for (int i = 0; i<vc.view.subviews.count; i++) {
                     if ([vc.view.subviews[i] isKindOfClass:[Canvas class]]) {
@@ -350,7 +382,9 @@
                         NSString *filePath = [path stringByAppendingPathComponent:currentDate];
                         [NSKeyedArchiver archiveRootObject:noteData toFile:filePath];
                         [canvas removePKToolPicker];
-                        [canvas removeFromSuperview];
+//                        [canvas removeFromSuperview];
+                        [canvas sendSubviewToBack:vc.view];
+                        canvas.userInteractionEnabled = NO;
                     }
                 }
                 
@@ -364,14 +398,19 @@
                  刷新数据  发通知
                  */
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"current_day_drawing_changed" object:nil];
-            }else{
+            }
+                else{
                 HomeVC * vc = self.viewControllers[0];
-                Canvas * canvas = [[Canvas alloc]initWithFrame:self.view.bounds];
-                [vc.view addSubview:canvas];
-                [canvas bringSubviewToFront:vc.view];
-                [canvas show];
+//                Canvas * canvas = [[Canvas alloc]initWithFrame:self.view.bounds];
+                    if (self.count == 0) {
+                        [vc.view addSubview:self.canvas];
+                    }
+                self.count +=1;
+                self.canvas.userInteractionEnabled = YES;
+                [self.canvas bringSubviewToFront:vc.view];
+                [self.canvas show];
                 if (vc.drawing) {
-                    canvas.canvas.drawing = vc.drawing;
+                    self.canvas.canvas.drawing = vc.drawing;
                 }else{
                     
                 }
@@ -409,13 +448,23 @@
     }
     return _navView;
 }
--(UITableView *)menuView{
+-(MenuView *)menuView{
     if (!_menuView) {
-        _menuView = [[UITableView alloc]initWithFrame:CGRectMake(-320, 0, 320, ScreenH) style:UITableViewStyleGrouped];
-        
+        _menuView = [[MenuView alloc]initWithFrame:CGRectMake(-320, 0, 320, ScreenH)];
+        UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(hideMenu:)];
+        [_menuView addGestureRecognizer:pan];
     }
     return _menuView;
 }
-
+-(void)hideMenu:(UIPanGestureRecognizer *)rec{
+    CGPoint point = [rec translationInView:self.view];
+    rec.view.center = CGPointMake(rec.view.center.x + point.x, rec.view.center.y + point.y);
+    [rec setTranslation:CGPointMake(0, 0) inView:self.view];
+    if (rec.state == UIGestureRecognizerStateEnded) {
+        if (rec.view.frame.origin.x<280) {
+            rec.view.frame = CGRectMake(-320, 0, 320, ScreenH);
+        }
+    }
+}
 
 @end

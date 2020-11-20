@@ -7,7 +7,9 @@
 //
 
 #import "CustomSheduleCell.h"
+@interface CustomSheduleCell()<UITextViewDelegate>
 
+@end
 @implementation CustomSheduleCell
 -(void)setFrame:(CGRect)frame{
     frame.size.height -= 15;
@@ -16,25 +18,35 @@
 }
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self addSubview:self.timeLabel];
-        [self addSubview:self.line];
-        [self addSubview:self.bgView];
+        [self.contentView addSubview:self.timeLabel];
+        [self.contentView addSubview:self.line];
+        [self.contentView addSubview:self.bgView];
         self.backgroundColor = bg_color;
     }
     return self;
 }
+-(void)checkBtnClick{
+    if (self.checkBtn.selected == YES) {
+        self.checkBtn.selected = NO;
+    }else{
+        self.checkBtn.selected = YES;
+    }
+}
+-(void)textViewDidChange:(UITextView *)textView{
+    
+}
 -(void)layoutSubviews{
     [super layoutSubviews];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self);
-        make.left.equalTo(self);
+        make.top.equalTo(self.contentView);
+        make.left.equalTo(self.contentView);
         make.width.equalTo(40);
         make.height.equalTo(15);
     }];
     [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.timeLabel.right);
         make.centerY.equalTo(self.timeLabel);
-        make.right.equalTo(self);
+        make.right.equalTo(self.contentView);
         make.height.equalTo(0.5);
     }];
     
@@ -42,7 +54,7 @@
         make.left.equalTo(self.bgView).offset(10);
         make.top.equalTo(self.bgView).offset(10);
         make.bottom.equalTo(self.bgView).offset(-10);
-        make.right.equalTo(self.bgView).offset(-30);
+        make.right.equalTo(self.bgView).offset(-35);
     }];
     [self.checkBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.noteLabel);
@@ -52,9 +64,9 @@
         
     }];
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self);
-        make.right.equalTo(self);
-        make.bottom.equalTo(self);
+        make.left.equalTo(self.contentView);
+        make.right.equalTo(self.contentView);
+        make.bottom.equalTo(self.contentView);
         make.top.equalTo(self.timeLabel.bottom);
     }];
     
@@ -82,25 +94,33 @@
         _bgView.layer.borderWidth = 0.5;
         _bgView.layer.cornerRadius = 5;
         _bgView.layer.masksToBounds = YES;
-        _bgView.backgroundColor = [UIColor whiteColor];
+        _bgView.backgroundColor = RGB(236, 228, 254, 1);
+        _bgView.userInteractionEnabled = YES;
         [_bgView addSubview:self.noteLabel];
         [_bgView addSubview:self.checkBtn];
+        
     }
     return _bgView;
 }
--(UILabel *)noteLabel{
+-(UITextView *)noteLabel{
     if (!_noteLabel) {
-        _noteLabel = [[UILabel alloc]init];
+        _noteLabel = [[UITextView alloc]init];
         _noteLabel.textColor = font_color;
-        _noteLabel.numberOfLines = 0;
+        _noteLabel.font = [UIFont systemFontOfSize:16];
+        _noteLabel.backgroundColor = RGB(236, 228, 254, 1);
+        _noteLabel.delegate = self;
+//        _noteLabel.translatesAutoresizingMaskIntoConstraints = YES;
+        _noteLabel.scrollEnabled = NO;
+//        [_noteLabel sizeToFit];
     }
     return _noteLabel;
 }
 -(UIButton *)checkBtn{
     if (!_checkBtn) {
         _checkBtn = [[UIButton alloc]init];
-        [_checkBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-        [_checkBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+        [_checkBtn setImage:[UIImage imageNamed:@"check_btn"] forState:UIControlStateNormal];
+        [_checkBtn setImage:[UIImage imageNamed:@"checked_btn"] forState:UIControlStateSelected];
+        [_checkBtn addTarget:self action:@selector(checkBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _checkBtn;
 }

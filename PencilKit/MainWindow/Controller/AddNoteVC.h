@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AddNoteVC : UIViewController
+@interface AddNoteVC : UIViewController<UINavigationControllerDelegate>
 @property(nonatomic,strong) NSDate * selectDay;
 @end
 

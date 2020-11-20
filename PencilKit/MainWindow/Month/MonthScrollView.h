@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 //typedef void (^DidSelectDayHandler)(NSInteger, NSInteger, NSInteger);
 @interface MonthScrollView : UIScrollView
 //@property (nonatomic, copy) DidSelectDayHandler didSelectDayHandler; // 日期点击回调
-@property(nonatomic,strong) NSDate * assignDate;
+@property(nonatomic,strong) NSDate * selectedDate;
 - (void)refreshToCurrentMonth; // 刷新 calendar 回到当前日期月份
 -(void)notifyToChangeCalendarHeader;
 @end

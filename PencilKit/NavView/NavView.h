@@ -10,8 +10,7 @@
 #import "CanlendarToolView.h"
 NS_ASSUME_NONNULL_BEGIN
 @protocol NavigationViewDelegate <NSObject>
-
--(void)handleCanlenderToolAction:(NSInteger) tag;
+-(void)handleCanlenderToolAction:(NSInteger)tag;
 -(void)handleBtnAction:(UIButton *)btn;
 
 @end

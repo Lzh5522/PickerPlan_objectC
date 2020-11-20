@@ -11,6 +11,7 @@
 #define MAS_SHORTHAND
 #define MAS_SHORTHAND_GLOBALS
 #import <Masonry.h>
+#import <AVOSCloud.h>
 #import "UITableView+AddCorners.h"
 #import "UIView+AddCorners.h"
 #import "UIImageView+AddCorners.h"

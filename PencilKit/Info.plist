@@ -29,7 +29,7 @@
 	<key>NSAppTransportSecurity</key>
 	<dict/>
 	<key>NSCalendarsUsageDescription</key>
-	<string>是否允许梭鱼日程请求访问您的日历？</string>
+	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>是否允许梭鱼日程请求访问您的位置？</string>
 	<key>UILaunchStoryboardName</key>

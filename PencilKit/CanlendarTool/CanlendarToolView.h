@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)handleBtnClicked:(NSInteger)btnTag;
 
 @end
-@interface CanlendarToolView : UIView
+@interface CanlendarToolView : UISegmentedControl
 @property(nonatomic,strong) UIButton * dayBtn;
 @property(nonatomic,strong) UIButton * weekBtn;
 @property(nonatomic,strong) UIButton * monthBtn;
@@ -24,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong) UIColor * titleColor;
 @property(nonatomic,strong) UIColor * titleSelectedColor;
 @property(nonatomic,weak) id <CanlendarToolDelegate> delegate;
--(void)btnSelectDayBtn;
 @end
 
 NS_ASSUME_NONNULL_END

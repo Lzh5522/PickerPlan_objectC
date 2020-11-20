@@ -29,7 +29,6 @@
 }
 -(void)layoutSubviews{
     [super layoutSubviews];
-    [self layoutIfNeeded];
     [self.canlenderToolView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
         make.top.equalTo(self).offset(31);
@@ -85,9 +84,10 @@
     [self.delegate handleBtnAction:btn];
     
 }
-- (void)handleBtnClicked:(NSInteger)btnTag{
-    [self.delegate handleCanlenderToolAction:btnTag];
+-(void)handleSegClicked:(UISegmentedControl *)seg{
+    [self.delegate handleCanlenderToolAction:seg.selectedSegmentIndex];
 }
+
 #pragma mark get time function
 -(NSString*)getCurrentTimes{
 
@@ -128,8 +128,13 @@
 #pragma mark lazy
 -(CanlendarToolView *)canlenderToolView{
     if(!_canlenderToolView){
-        _canlenderToolView = [[CanlendarToolView alloc]init];
-        _canlenderToolView.delegate = self;
+        NSArray*buttonNames = [NSArray arrayWithObjects:@"日", @"月", @"年",@"时间",nil];
+        _canlenderToolView = [[CanlendarToolView alloc]initWithItems:buttonNames];
+        _canlenderToolView.selectedSegmentIndex=0;
+        [_canlenderToolView addTarget:self action:@selector(handleSegClicked:)forControlEvents:UIControlEventValueChanged];
+//        _canlenderToolView.delegate = self;
+        
+        
     }
     return _canlenderToolView;
 }

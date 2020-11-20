@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong) UILabel * timeLabel;
 @property(nonatomic,strong) UIView * line;
 @property(nonatomic,strong) UIView * bgView;
-@property(nonatomic,strong) UILabel * noteLabel;
+@property(nonatomic,strong) UITextView * noteLabel;
 @property(nonatomic,strong) UIButton * checkBtn;
 
 @end

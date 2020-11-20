@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Canvas.h"
 NS_ASSUME_NONNULL_BEGIN
 @protocol MainWindowVCDelegate <NSObject>
 
@@ -15,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 @interface MainWindowVC : UITabBarController
-
+@property(nonatomic,strong) Canvas * canvas;
+@property(nonatomic,assign) NSInteger count;
 
 @end
 

@@ -18,11 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-//    self.mainTabBarController = [[MainTabBarController alloc]init];
-//    LoginVC * loginvc = [[LoginVC alloc]init];
-//    self.window.rootViewController = loginvc;
-    //    self.window.rootViewController = self.mainTabBarController;
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDarkContent;
+    [AVOSCloud setApplicationId:@"9S3JvXU3zHetYgUIYnwJa2Tl-9Nh9j0Va" clientKey:@"lsfTnOEFRwcVC7olxmmc570B"];
     
     MainWindowVC * vc = [[MainWindowVC alloc]init];
     self.window.rootViewController = vc;

@@ -39,7 +39,8 @@
     _yearScrollView.showsHorizontalScrollIndicator = NO;
     _yearScrollView.pagingEnabled = YES;
     _yearScrollView.bounces = NO;
-    _yearScrollView.backgroundColor = [UIColor orangeColor];
+    _yearScrollView.scrollEnabled = NO;
+    _yearScrollView.backgroundColor = bg_color;
     _yearScrollView.contentSize = CGSizeMake(ScreenW, (ScreenH-navigationViewHeight)*3);
     _yearScrollView.contentOffset = CGPointMake(0, ScreenH-navigationViewHeight);
     /*
@@ -56,7 +57,7 @@
     _collectionViewL = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, ScreenH-navigationViewHeight) collectionViewLayout:layout];
     _collectionViewL.delegate = self;
     _collectionViewL.dataSource = self;
-    _collectionViewL.backgroundColor = [UIColor redColor];
+    _collectionViewL.backgroundColor = bg_color;
     [_collectionViewL registerClass:[YearDetailCell class] forCellWithReuseIdentifier:@"cellID"];
     _collectionViewL.scrollEnabled = NO;
     [self.yearScrollView addSubview:_collectionViewL];
@@ -66,7 +67,7 @@
     _collectionViewM = [[UICollectionView alloc]initWithFrame:CGRectMake(0, ScreenH-70, ScreenW, ScreenH-70) collectionViewLayout:layout];
     _collectionViewM.delegate = self;
     _collectionViewM.dataSource = self;
-    _collectionViewM.backgroundColor = [UIColor greenColor];
+    _collectionViewM.backgroundColor = bg_color;
     [_collectionViewM registerClass:[YearDetailCell class] forCellWithReuseIdentifier:@"cellID"];
     _collectionViewM.scrollEnabled = NO;
     [self.yearScrollView addSubview:_collectionViewM];
@@ -76,7 +77,7 @@
     _collectionViewR = [[UICollectionView alloc]initWithFrame:CGRectMake(0, ScreenH*2-140, ScreenW, ScreenH-70) collectionViewLayout:layout];
     _collectionViewR.delegate = self;
     _collectionViewR.dataSource = self;
-    _collectionViewR.backgroundColor = [UIColor blueColor];
+    _collectionViewR.backgroundColor = bg_color;
     [_collectionViewR registerClass:[YearDetailCell class] forCellWithReuseIdentifier:@"cellID"];
     _collectionViewR.scrollEnabled = NO;
     [self.yearScrollView addSubview:_collectionViewR];
@@ -162,7 +163,14 @@
     
     return cell;
 }
-
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSMutableArray * arr = self.arr[1];
+    NSDate * currDate = arr[indexPath.row];
+    NSMutableDictionary * userInfo = [NSMutableDictionary dictionaryWithCapacity:1];
+    [userInfo setObject:currDate forKey:@"selectedDate"];
+    NSNotification * notify = [[NSNotification alloc]initWithName:@"YearVC.SelectedMonth" object:nil userInfo:userInfo];
+    [[NSNotificationCenter defaultCenter] postNotification:notify];
+}
 -(NSMutableArray *)yearArr{
     if (!_yearArr) {
         _yearArr = [NSMutableArray array];

@@ -7,15 +7,15 @@
 //
 
 #import "ScheduleView.h"
-#import "ScheduleCell.h"
-#import "ScheduleTextViewCellTableViewCell.h"
 #import "CustomSheduleCell.h"
-@interface ScheduleView()<UITableViewDelegate,UITableViewDataSource,ScheduleCellDelegate>
+@interface ScheduleView()<UITableViewDelegate,UITableViewDataSource>
 {
     CGFloat _height;
     NSInteger _cellTag;
 }
 @property(nonatomic,strong) NSMutableArray * noteArr;
+@property(nonatomic,strong) NSMutableArray * timeArr;
+@property(nonatomic,copy) NSString * changingNote;
 @end
 @implementation ScheduleView
 
@@ -23,6 +23,8 @@
     if (self = [super initWithFrame:frame]) {
         [self addSubview:self.scheduleTableView];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(titleAndNotes:) name:@"AddNoteVC.Notes" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leanCloudTime:) name:@"AddNoteVC.Time" object:nil];
+        
     }
     return self;
 }
@@ -36,22 +38,39 @@
     }];
     
 }
+-(void)leanCloudTime:(NSNotification *)sender{
+    NSDictionary * dic = sender.userInfo;
+    NSString * time = dic[@"time"];
+    [self.timeArr addObject:time];
+    [self.scheduleTableView reloadData];
+}
 -(void)titleAndNotes:(NSNotification * )sender{
     NSDictionary * dic = sender.userInfo;
     NSString * note = dic[@"note"];
     [self.noteArr addObject:note];
-    NSLog(@"note arr is %@",self.noteArr);
     [self.scheduleTableView reloadData];
 }
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 #pragma mark lazy
+-(NSString *)changingNote{
+    if (!_changingNote) {
+        _changingNote = [NSString string];
+    }
+    return _changingNote;
+}
 -(NSMutableArray *)noteArr{
     if (!_noteArr) {
         _noteArr = [NSMutableArray array];
     }
     return _noteArr;
+}
+-(NSMutableArray *)timeArr{
+    if(!_timeArr){
+        _timeArr = [NSMutableArray array];
+    }
+    return _timeArr;
 }
 -(UITableView *)scheduleTableView{
     if (!_scheduleTableView) {
@@ -59,8 +78,6 @@
         _scheduleTableView.delegate = self;
         _scheduleTableView.dataSource = self;
         _scheduleTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _scheduleTableView.estimatedRowHeight = 100;
-        _scheduleTableView.rowHeight = UITableViewAutomaticDimension;
         _scheduleTableView.backgroundColor = bg_color;
         [_scheduleTableView registerClass:[CustomSheduleCell class] forCellReuseIdentifier:@"cellID"];
     }
@@ -72,33 +89,36 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.noteArr.count;
-//    return 3;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    static NSString * ID = @"ScheduleTextViewCellTableViewCell";
-//    [tableView registerNib:[UINib nibWithNibName:@"ScheduleTextViewCellTableViewCell" bundle:nil] forCellReuseIdentifier:ID];
-//    ScheduleTextViewCellTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
-//    cell.textLabel.text = self.noteArr[indexPath.row];
     CustomSheduleCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cellID" forIndexPath:indexPath];
-    cell.timeLabel.text = @"10:30";
-    cell.noteLabel.text = self.noteArr[indexPath.row];
+    if (self.timeArr.count !=0) {
+        cell.timeLabel.text = self.timeArr[indexPath.row];
+    }
+    if (self.noteArr.count != 0) {
+        cell.noteLabel.text = self.noteArr[indexPath.row];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    ScheduleTextViewCellTableViewCell * cell = [self.scheduleTableView cellForRowAtIndexPath:indexPath];
-//    if(cell.textView.text == nil){
-//        return 100;
-//    }
-//    else{
-//        return UITableViewAutomaticDimension;
-//    }
-    return 100;
+    return 150;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ScheduleTextViewCellTableViewCell * cell = [self.scheduleTableView cellForRowAtIndexPath:indexPath];
-    [cell.textView becomeFirstResponder];
-    NSLog(@"clicked");
+    
 }
+- (CGFloat)getStringHeightWithText:(NSString *)text font:(UIFont *)font viewWidth:(CGFloat)width {
+    // 设置文字属性 要和label的一致
+    NSDictionary *attrs = @{NSFontAttributeName :font};
+    CGSize maxSize = CGSizeMake(width, MAXFLOAT);
 
+    NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
+
+    // 计算文字占据的宽高
+    CGSize size = [text boundingRectWithSize:maxSize options:options attributes:attrs context:nil].size;
+
+   // 当你是把获得的高度来布局控件的View的高度的时候.size转化为ceilf(size.height)。
+    return  ceilf(size.height);
+}
 @end

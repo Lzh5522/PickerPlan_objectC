@@ -40,15 +40,65 @@ static NSString *const kCellIdentifier = @"cell";
         _currentMonthDate = [NSDate date];
         [self setupCollectionViews];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentDayDrawingChanged) name:@"current_day_drawing_changed" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectedMonth:) name:@"YearVC.SelectedMonth" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectedMonthDetail:) name:@"YearVC.SelectedMonthDetail" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUI) name:@"DetailDayVC.RefreshUI" object:nil];
     }
     
     return self;
     
 }
+-(void)refreshUI{
+    [self.collectionViewL reloadData];
+    [self.collectionViewM reloadData];
+    [self.collectionViewR reloadData];
+}
+-(void)selectedMonthDetail:(NSNotification *)sender{
+    NSDictionary * dic = sender.userInfo;
+    NSDate * date = dic[@"selectedDate"];
+    self.currentMonthDate = date;
+    NSLog(@"%@",self.currentMonthDate);
+    NSDate *previousMonthDate = [self.currentMonthDate previousMonthDate];
+    NSDate *nextMonthDate = [self.currentMonthDate nextMonthDate];
+    [self.monthArray removeAllObjects];
+    [self.monthArray addObject:[[GFCalendarMonth alloc] initWithDate:previousMonthDate]];
+    [self.monthArray addObject:[[GFCalendarMonth alloc] initWithDate:self.currentMonthDate]];
+    [self.monthArray addObject:[[GFCalendarMonth alloc] initWithDate:nextMonthDate]];
+    [self.monthArray addObject:[self previousMonthDaysForPreviousDate:previousMonthDate]];
+    
+    [self.collectionViewL reloadData];
+    [self.collectionViewM reloadData];
+    [self.collectionViewR reloadData];
+}
+-(void)selectedMonth:(NSNotification * )sender{
+    NSDictionary * dic = sender.userInfo;
+    NSDate * date = dic[@"selectedDate"];
+    self.currentMonthDate = date;
+    NSDate *previousMonthDate = [self.currentMonthDate previousMonthDate];
+    NSDate *nextMonthDate = [self.currentMonthDate nextMonthDate];
+    [self.monthArray removeAllObjects];
+    [self.monthArray addObject:[[GFCalendarMonth alloc] initWithDate:previousMonthDate]];
+    [self.monthArray addObject:[[GFCalendarMonth alloc] initWithDate:self.currentMonthDate]];
+    [self.monthArray addObject:[[GFCalendarMonth alloc] initWithDate:nextMonthDate]];
+    [self.monthArray addObject:[self previousMonthDaysForPreviousDate:previousMonthDate]];
+    [self.collectionViewL reloadData];
+    [self.collectionViewM reloadData];
+    [self.collectionViewR reloadData];
+}
+- (void)dealloc {
+    // 移除监听
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 -(void)currentDayDrawingChanged{
     [self.collectionViewL reloadData];
     [self.collectionViewM reloadData];
     [self.collectionViewR reloadData];
+}
+-(NSDate *)selectedDate{
+    if (!_selectedDate) {
+        _selectedDate = [[NSDate alloc]init];
+    }
+    return _selectedDate;
 }
 - (NSMutableArray *)monthArray {
     
@@ -142,47 +192,6 @@ static NSString *const kCellIdentifier = @"cell";
             NSNotification *notify = [[NSNotification alloc] initWithName:@"MonthScrollView.SelectedDay" object:nil userInfo:userInfo];
             [[NSNotificationCenter defaultCenter] postNotification:notify];
         }
-//        if (str < [d dateDay]) {
-//            GFCalendarMonth *monthInfo = self.monthArray[1];
-//            NSCalendar * calendar = [NSCalendar currentCalendar];
-//            NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:monthInfo.monthDate];
-//            components.day = str+1;
-//            NSDate * date = [calendar dateFromComponents:components];
-//            NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithCapacity:1];
-//            [userInfo setObject:date forKey:@"select_day"];
-//            NSNotification *notify = [[NSNotification alloc] initWithName:@"MonthScrollView.SelectedDay" object:nil userInfo:userInfo];
-//            [[NSNotificationCenter defaultCenter] postNotification:notify];
-//        }else {
-//            //跳转到日视图
-//            MonthCollectionViewCell * cell = (MonthCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-//            if (cell.imgView.image == nil) {
-//                NSInteger str = [cell.todayLabel.text integerValue];
-//                /*
-//
-//                 */
-//                GFCalendarMonth *monthInfo = self.monthArray[1];
-//                NSCalendar * calendar = [NSCalendar currentCalendar];
-//                NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:monthInfo.monthDate];
-//                components.day = str+1;
-//                NSDate * date = [calendar dateFromComponents:components];
-//                NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithCapacity:1];
-//                [userInfo setObject:date forKey:@"select_day"];
-//                NSNotification *notify = [[NSNotification alloc] initWithName:@"MonthScrollView.SelectedDay.tiao" object:nil userInfo:userInfo];
-//                [[NSNotificationCenter defaultCenter] postNotification:notify];
-//
-//                //更改日期
-//                GFCalendarMonth *currentMonthInfo = self.monthArray[1];
-//                NSMutableDictionary *userInfo1 = [NSMutableDictionary dictionaryWithCapacity:2];
-//                [userInfo setObject:[[NSNumber alloc] initWithInteger:currentMonthInfo.year] forKey:@"year"];
-//                [userInfo setObject:[[NSNumber alloc] initWithInteger:currentMonthInfo.month] forKey:@"month"];
-//                NSNotification *notify1 = [[NSNotification alloc] initWithName:@"GFCalendar.ChangeCalendarHeaderNotification" object:nil userInfo:userInfo1];
-//                [[NSNotificationCenter defaultCenter] postNotification:notify1];
-//            }else{
-//
-//                NSNotification *notify = [[NSNotification alloc] initWithName:@"MonthScrollView.hadResult" object:nil userInfo:nil];
-//                [[NSNotificationCenter defaultCenter] postNotification:notify];
-//            }
-//        }
     }
 }
 
@@ -283,6 +292,9 @@ static NSString *const kCellIdentifier = @"cell";
             cell.todayLabel.textColor = [UIColor colorWithWhite:0.85 alpha:1.0];
             cell.todayCircle.backgroundColor = [UIColor clearColor];
             cell.userInteractionEnabled = NO;
+        }
+        if(indexPath.row==0||indexPath.row==6||indexPath.row==7||indexPath.row==13||indexPath.row==14||indexPath.row==20||indexPath.row==21||indexPath.row==27||indexPath.row==28||indexPath.row==34||indexPath.row==35||indexPath.row==41) {
+            cell.backgroundColor = RGB(236, 228, 254, 1);
         }
     }
     else if (collectionView == _collectionViewR) {

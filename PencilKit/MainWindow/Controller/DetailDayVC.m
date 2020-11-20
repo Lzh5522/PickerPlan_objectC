@@ -18,33 +18,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.resultView];
-    [self.resultView addSubview:self.canvasView];
-    [self.canvasView show];
-    self.view.backgroundColor = [UIColor redColor];
+
+    [self.view addSubview:self.canvas];
+    [self show];
+    self.view.backgroundColor = bg_color;
     self.navigationController.navigationBar.hidden = YES;
     UIButton * cancleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [cancleBtn setImage:[UIImage imageNamed:@"cancle_btn"] forState:UIControlStateNormal];
     cancleBtn.titleLabel.textColor = [UIColor blackColor];
     [cancleBtn addTarget:self action:@selector(cancleBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     UIButton * saveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [saveBtn setTitle:@"保存" forState:UIControlStateNormal];
+    [saveBtn setImage:[UIImage imageNamed:@"save_btn"] forState:UIControlStateNormal];
     saveBtn.titleLabel.textColor = [UIColor blackColor];
     [saveBtn addTarget:self action:@selector(saveBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancleBtn];
     [self.view addSubview:saveBtn];
-    [self.canvasView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.resultView);
-        make.top.equalTo(self.resultView);
-        make.bottom.equalTo(self.resultView);
-        make.right.equalTo(self.resultView);
+    [self.resultView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(70);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-20);
     }];
     [cancleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(20);
-        make.left.equalTo(self.view).offset(10);
+        make.left.equalTo(self.view).offset(30);
     }];
     [saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(20);
-        make.right.equalTo(self.view).offset(-10);
+        make.right.equalTo(self.view).offset(-30);
+    }];
+    [self.canvas mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view);
+        make.top.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.bottom.equalTo(self.view);
     }];
 }
 -(void)cancleBtnClicked{
@@ -57,11 +64,20 @@
      存储该日数据
      */
     //获取当日时间
-    NSString * currentDate = [self getCurrentTimeAndWeekDayFromDate:_day];
+    NSLog(@"self day %@",self.day);
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:self.day];
+    components.day -= 1; // 定位到当月中间日子
+    NSDate *previousDate = [calendar dateFromComponents:components];
+    NSString * currentDate = [self getCurrentTimeAndWeekDayFromDate:previousDate];
     NSString * path = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
     NSString *filePath = [path stringByAppendingPathComponent:currentDate];
     [NSKeyedArchiver archiveRootObject:notedata toFile:filePath];
-    [self.canvasView removePKToolPicker];
+    //发通知  刷新UI
+    NSNotification * notify = [[NSNotification alloc]initWithName:@"DetailDayVC.RefreshUI" object:nil userInfo:nil];
+    [[NSNotificationCenter defaultCenter] postNotification:notify];
+    [self removePKToolPicker];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (NSString *)getCurrentTimeAndWeekDayFromDate:(NSDate *)dayDate{
@@ -78,17 +94,44 @@
 #pragma mark lazy
 -(UIImageView *)resultView{
     if (!_resultView) {
-        _resultView = [[UIImageView alloc]initWithFrame:CGRectMake(0, navigationViewHeight, self.view.bounds.size.width, self.view.bounds.size.height-50)];
+        _resultView = [[UIImageView alloc]init];
         _resultView.image = self.img;
         _resultView.backgroundColor = bg_color;
+        _resultView.userInteractionEnabled = YES;
     }
     return _resultView;
 }
--(Canvas *)canvasView{
-    if (!_canvasView) {
-        _canvasView = [[Canvas alloc]init];
+-(NSDate *)day{
+    if (!_day) {
+        _day = [[NSDate alloc]init];
     }
-    return _canvasView;
+    return _day;
 }
-
+-(PKCanvasView *)canvas{
+    if (!_canvas) {
+        _canvas = [[PKCanvasView alloc]init];
+        _canvas.backgroundColor = [UIColor clearColor];
+    }
+    return _canvas;
+}
+-(PKToolPicker *)picker{
+    if (!_picker) {
+        _picker = [[PKToolPicker alloc]init];
+    }
+    return _picker;
+}
+-(void)show{
+   
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.picker setVisible:YES forFirstResponder:self.canvas];
+        [self.picker addObserver:self.canvas];
+        [self.canvas becomeFirstResponder];
+    });
+}
+-(void)removePKToolPicker{
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.picker setVisible:NO forFirstResponder:self.canvas];
+    });
+}
 @end

@@ -23,7 +23,7 @@ static NSString *const CELLID = @"cell";
         NSArray * arr = [NSArray arrayWithObjects:@"日",@"一",@"二",@"三",@"四",@"五",@"六",nil];
         for(NSInteger i=0;i<7;i++){
             UILabel * weekLabel = [[UILabel alloc]init];
-            weekLabel.font = [UIFont boldSystemFontOfSize:15];
+            weekLabel.font = [UIFont boldSystemFontOfSize:14];
             weekLabel.textColor = font_color;
             weekLabel.frame = CGRectMake((self.bounds.size.width/7.0)*i, 50, (self.bounds.size.width/7.0), 20);
             weekLabel.text = arr[i];
@@ -47,6 +47,12 @@ static NSString *const CELLID = @"cell";
     _monthLabel.text = [NSString stringWithFormat:@"%ld%@",[_currentDate dateMonth],@"月"];
 }
 #pragma mark delegate and datasource
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSMutableDictionary * userInfo = [NSMutableDictionary dictionaryWithCapacity:1];
+    [userInfo setObject:self.currentDate forKey:@"selectedDate"];
+    NSNotification * notify = [[NSNotification alloc]initWithName:@"YearVC.SelectedMonthDetail" object:nil userInfo:userInfo];
+    [[NSNotificationCenter defaultCenter] postNotification:notify];
+}
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
 }
@@ -55,8 +61,8 @@ static NSString *const CELLID = @"cell";
 }
 -(__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        NSLog(@"一共有%ld天",[_currentDate totalDaysInMonth]);
-        NSLog(@"第一天%ld",[_currentDate firstWeekDayInMonth]);
+//        NSLog(@"一共有%ld天",[_currentDate totalDaysInMonth]);
+//        NSLog(@"第一天%ld",[_currentDate firstWeekDayInMonth]);
     }
     YearDateCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELLID forIndexPath:indexPath];
     NSInteger firstWeekday = [_currentDate firstWeekDayInMonth];
@@ -68,8 +74,12 @@ static NSString *const CELLID = @"cell";
     }
     cell.layer.borderWidth = 0.5;
     cell.layer.borderColor = [UIColor blackColor].CGColor;
+    if(indexPath.row==0||indexPath.row==6||indexPath.row==7||indexPath.row==13||indexPath.row==14||indexPath.row==20||indexPath.row==21||indexPath.row==27||indexPath.row==28||indexPath.row==34||indexPath.row==35||indexPath.row==41) {
+        cell.backgroundColor = RGB(236, 228, 254, 1);
+    }
     return cell;
 }
+
 #pragma mark lazy
 -(UILabel *)monthLabel{
     if (!_monthLabel) {

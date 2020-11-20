@@ -9,7 +9,7 @@
 #import "AddNoteVC.h"
 #import <EventKit/EventKit.h>
 #import <EventKitUI/EventKitUI.h>
-@interface AddNoteVC ()<UITextViewDelegate,UIPickerViewDataSource,EKEventEditViewDelegate>
+@interface AddNoteVC ()<UITextViewDelegate,EKEventEditViewDelegate>
 @property(nonatomic,strong) UIPickerView * pickerView;
 @property(nonatomic,strong) UIButton * cancleBtn;
 @property(nonatomic,strong) UIButton * hardTimeBtn;
@@ -29,6 +29,20 @@
     [super viewWillLayoutSubviews];
     self.view.superview.bounds = CGRectMake(0, 0, ScreenW, ScreenH);
     
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    if ([eventStore respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
+        [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (error) {
+                    
+                }else if (!granted){
+                    NSLog(@"被拒绝");
+                }else{
+                    
+                }
+            });
+        }];
+    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,7 +76,14 @@
         }
     }
 }
-
+#pragma mark UInavigationDelegate
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if ([viewController isKindOfClass:[UITableViewController class]]) {
+//        ((UITableViewController *)viewController).tableView.backgroundColor = bg_color;
+//        UITableViewController * tableViewController = (UITableViewController *)viewController;
+        ((UITableViewController *)viewController).tableView.backgroundView = nil;
+    }
+}
 #pragma mark show time picker
 -(void)showTimePicker:(NSInteger) direction{
     switch (direction) {
@@ -97,12 +118,37 @@
             NSNotification *notify = [[NSNotification alloc] initWithName:@"AddNoteVC.Notes" object:nil userInfo:userInfo];
             [[NSNotificationCenter defaultCenter] postNotification:notify];
             [self dismissViewControllerAnimated:NO completion:nil];
+            AVObject *testObject = [AVObject objectWithClassName:@"NLP_label"];
+            [testObject setObject:note forKey:@"label"];
+            [testObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    // 成功保存之后，执行其他逻辑
+                } else {
+                    // 异常处理
+                }
+            }];
+            [self performSelector:@selector(getTimeFromLeanCloud) withObject:nil afterDelay:8];
         }
             break;;
         default:
             break;
     }
     
+}
+-(NSString *)getTimeFromLeanCloud{
+    AVQuery *query = [AVQuery queryWithClassName:@"NLP_time"];
+    [query orderByDescending:@"time_id"];
+    [query getFirstObjectInBackgroundWithBlock:^(AVObject *todo, NSError *error) {
+        NSLog(@"todo is %@",todo);
+        NSString * dic1 = todo[@"time"];
+        NSString * timeStr = [dic1 substringWithRange:NSMakeRange(47, 5)];
+        NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithCapacity:8];
+        [userInfo setObject:timeStr forKey:@"time"];
+        NSNotification *notify = [[NSNotification alloc] initWithName:@"AddNoteVC.Time" object:nil userInfo:userInfo];
+        [[NSNotificationCenter defaultCenter] postNotification:notify];
+    }];
+    
+    return nil;
 }
 #pragma mark EvenKitDelegate
 - (void)eventEditViewController:(EKEventEditViewController *)controller didCompleteWithAction:(EKEventEditViewAction)action;{
@@ -203,9 +249,11 @@
     if (!_ekEditVC) {
         _ekEditVC = [[EKEventEditViewController alloc]init];
         _ekEditVC.eventStore = self.eventStore;
-        _ekEditVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        _ekEditVC.modalPresentationStyle = UIModalPresentationFormSheet;
+        _ekEditVC.preferredContentSize = CGSizeMake(400, 400);
         _ekEditVC.title = self.textView.text;
         _ekEditVC.editViewDelegate = self;
+        _ekEditVC.delegate = self;
     }
     return _ekEditVC;
 }
@@ -257,7 +305,7 @@
         _textView.delegate = self;
         _textView.textColor = font_color;
         _textView.font = [UIFont systemFontOfSize:24];
-        _textView.backgroundColor = [UIColor whiteColor];
+        _textView.backgroundColor = RGB(236, 228, 254, 1);
         _textView.textContainerInset = UIEdgeInsetsMake(10, 10, 10, 10);
     }
     return _textView;

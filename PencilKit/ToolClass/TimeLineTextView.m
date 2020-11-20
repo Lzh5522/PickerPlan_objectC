@@ -11,16 +11,20 @@
 @implementation TimeLineTextView
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        [self addSubview:self.roundView];
         [self addSubview:self.textView];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getEvenFromTimeLine:) name:@"TimeLineTextView.event" object:nil];
     }
     return self;
 }
+#pragma mark
+
 -(void)tapSelf{
     EKEventViewController * vc = [[EKEventViewController alloc]init];
+    vc.allowsCalendarPreview = YES;
     vc.view.backgroundColor = [UIColor whiteColor];
     vc.modalPresentationStyle = UIModalPresentationPopover;
+    if (self.event.location == nil) {
+        self.event.location = @"我也不知道自己在哪里...";
+    }
     vc.event = self.event;
         // 弹出视图的大小
     vc.preferredContentSize = CGSizeMake(300, 200);
@@ -55,41 +59,45 @@
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    [self.roundView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self);
-        make.top.equalTo(self);
-        make.bottom.equalTo(self);
-        make.width.equalTo(10);
-    }];
+    
     [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.roundView.right);
+        make.left.equalTo(self);
         make.top.equalTo(self);
         make.right.equalTo(self);
         make.bottom.equalTo(self);
     }];
+    [self.roundView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.textView).offset(-4);
+        make.top.equalTo(self);
+        make.bottom.equalTo(self);
+        make.width.equalTo(1);
+    }];
 }
 -(EKEvent *)event{
     if (!_event) {
-        _event = [[EKEvent alloc]init];
+        EKEventStore * store = [[EKEventStore alloc]init];
+        _event = [EKEvent eventWithEventStore:store];
     }
     return _event;
 }
 -(UIView *)roundView{
     if (!_roundView) {
         _roundView = [[UIView alloc]init];
-        _roundView.backgroundColor = RGB(83, 64, 151, 1);
-        _roundView.layer.cornerRadius = 5;
-        _roundView.layer.masksToBounds = YES;
+        _roundView.backgroundColor = font_color;
     }
     return _roundView;
 }
 -(UILabel *)textView{
     if (!_textView) {
         _textView = [[UILabel alloc]init];
-        _textView.backgroundColor = RGB(247, 244, 255, 1);
+        _textView.backgroundColor = bg_color;
+        _textView.layer.borderWidth = 1;
+        _textView.layer.borderColor = font_color.CGColor;
         _textView.userInteractionEnabled = YES;
+        _textView.numberOfLines = 0;
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapSelf)];
         [_textView addGestureRecognizer:tap];
+        [_textView addSubview:self.roundView];
     }
     return _textView;
 }

@@ -31,7 +31,6 @@
 }
 -(void)show{
    
-    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.picker setVisible:YES forFirstResponder:self.canvas];
         [self.picker addObserver:self.canvas];
